@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use App\Models\Employee;
+
+
 class UserController extends Controller
 {
     /**
@@ -14,7 +18,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = Employee::with('user')->get();
+
+        return view('admin.user.index',[
+          'users' => $user
+        ]);
     }
 
     /**
@@ -24,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -35,7 +43,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $param = $request->all();
+
+        $save = User::saveUser($param);
+
+        if ($save) {
+          flash('Petugas Berhasil Ditambahkan')->success()->important();
+        }else{
+          flash('Petugas Gagal Ditambahkan')->error()->important();
+        }
+
+        return redirect(route('admin.user.index'));
     }
 
     /**
@@ -78,8 +96,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        //
+      $user = User::find($employee->user_id);
+      
+      $employee->delete();
+      $user->delete();
+
+      flash('Petugas Berhasil Dihapus')->success()->important();
+
+      return back();
     }
 }

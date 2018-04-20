@@ -131,7 +131,7 @@ return [
 
         [
             'text' => 'Kelola Siswa',
-            'url'  => 'admin/management/students',
+            'url'  => '#',
             'icon' => 'group',
             'submenu' => [
                 [
@@ -146,14 +146,14 @@ return [
                     'text' => 'Kelas 9',
                     'url'  => '#',
                 ],
-                  
+
             ],
 
         ],
-        
+
         [
             'text' => 'Kelola Mata Pelajaran',
-            'url'  => 'admin/management/curriculums',
+            'url'  => '#',
             'icon' => 'image',
             'submenu' => [
                 [
@@ -168,13 +168,13 @@ return [
                     'text' => 'Kelas 9',
                     'url'  => '#',
                 ],
-                  
+
             ],
 
         ],
         [
             'text' => 'Kelola Buku',
-            'url'  => 'admin/management/books',
+            'url'  => '#',
             'icon' => 'book',
             'submenu' => [
                 [
@@ -189,12 +189,12 @@ return [
                     'text' => 'Kelas 9',
                     'url'  => '#',
                 ],
-                  
+
             ],
         ],
         [
             'text' => 'Laporan E-Library',
-            'url'  => 'admin/management/report',
+            'url'  => '#',
             'icon' => 'book',
             'submenu' => [
                 [
@@ -205,7 +205,7 @@ return [
                     'text' => 'Laporan Buku Bermasalah',
                     'url'  => '#',
                 ],
-                  
+
             ],
         ],
     ],
