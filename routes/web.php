@@ -13,7 +13,7 @@ Route::prefix('admin/management')->group(function () {
                 Route::get('/create', 'UserController@create')->name('admin.user.create');
                 Route::post('/store', 'UserController@store')->name('admin.user.store');
                 Route::get('/edit/{employee}', 'UserController@edit')->name('admin.user.edit');
-                Route::get('/update/{employee}', 'UserController@update')->name('admin.user.update');
+                Route::put('/update/{employee}', 'UserController@update')->name('admin.user.update');
                 Route::get('/destroy/{employee}', 'UserController@destroy')->name('admin.user.destroy');
 
         });

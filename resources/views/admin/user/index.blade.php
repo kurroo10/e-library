@@ -42,8 +42,7 @@
                           <td>{{ $item->user->username }}</td>
                           <td>{{ $item->user->created_at }}</td>
                           <td align="center">
-                            <a href="#" class="btn btn-info btn-simple btn-xs btn-view" title="Detail"> <span class="fa fa-eye"></span></a>
-                            <a href="#" class="btn btn-warning btn-simple btn-xs btn-edit" title="Edit"> <span class="fa fa-edit"></span></a>
+                            <a href="#" class="btn btn-warning btn-simple btn-xs btn-edit" title="Edit" data-name='{{$item->name}}' data-url='{{ route('admin.user.edit', $item->nip) }}'> <span class="fa fa-edit"></span></a>
                             <a href="#" class="btn btn-danger btn-simple btn-xs btn-delete" title="Delete" data-name='{{$item->name}}' data-url='{{ route('admin.user.destroy', $item->nip) }}'> <span class="fa fa-trash"></span></a>
                           </td>
                         </tr>
@@ -74,5 +73,22 @@
           }
         });
       });
+
+      $(document).on('click','.btn-edit',function () {
+          var nama = $(this).data('name');
+          var url = $(this).data('url');
+          swal({
+            title: "Apakah Anda Yakin?",
+            text: "Anda akan merubah data milik "+nama+"!",
+            icon: "warning",
+            buttons: ["Batal", "Ubah!"],
+            dangerMode :true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              location.replace(url);
+            }
+          });
+        });
   </script>
 @stop

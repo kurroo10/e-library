@@ -73,9 +73,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
+        return view('admin.user.edit',[
+          'employee'  => $employee
+        ]);
     }
 
     /**
@@ -85,9 +87,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
-        //
+      $param = $request->all();
+
+      $save = User::updateUser($param,$employee);
+
+      if ($save) {
+        flash('Petugas Berhasil Diubah')->success()->important();
+      }else{
+        flash('Petugas Gagal Diubah')->error()->important();
+      }
+
+      return redirect(route('admin.user.index'));
     }
 
     /**
@@ -99,7 +111,7 @@ class UserController extends Controller
     public function destroy(Employee $employee)
     {
       $user = User::find($employee->user_id);
-      
+
       $employee->delete();
       $user->delete();
 

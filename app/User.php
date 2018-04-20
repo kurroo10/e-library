@@ -57,7 +57,38 @@ class User extends Authenticatable
 
       } catch (\Exception $e) {
         DB::rollback();
-        dd($e);
+        $response = false;
+      }
+
+      return $response;
+
+    }
+
+    public static function updateUser($param,$employee)
+    {
+      try {
+        DB::beginTransaction();
+        $user = User::find($employee->user_id);
+        $user->name     = $param['name'];
+        $user->username = $param['username'];
+        $user->email    = $param['email'];
+
+        $user->save();
+
+        $employee = Employee::find($employee->nip);
+        $employee->nip = $param['nip'];
+        $employee->name = $param['name'];
+        $employee->gender = $param['gender'];
+
+        $employee->save();
+
+
+        DB::commit();
+
+        $response = true;
+
+      } catch (\Exception $e) {
+        DB::rollback();
         $response = false;
       }
 
