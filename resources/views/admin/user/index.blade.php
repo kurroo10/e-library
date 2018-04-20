@@ -56,7 +56,7 @@
             <!-- /.box -->
 @stop
 
-@section('adminlte_js')
+@section('js')
   <script type="text/javascript">
     $(document).on('click','.btn-delete',function () {
         var nama = $(this).data('name');
