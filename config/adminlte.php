@@ -158,15 +158,15 @@ return [
             'submenu' => [
                 [
                     'text' => 'Kelas 7',
-                    'url'  => '#',
+                    'url'  => 'admin/management/curriculumn/7',
                 ],
                 [
                     'text' => 'Kelas 8',
-                    'url'  => '#',
+                    'url'  => 'admin/management/curriculumn/8',
                 ],
                 [
                     'text' => 'Kelas 9',
-                    'url'  => '#',
+                    'url'  => 'admin/management/curriculumn/9',
                 ],
 
             ],

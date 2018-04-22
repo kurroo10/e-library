@@ -44,6 +44,17 @@ Route::prefix('admin/management')->group(function () {
 
         });
 
+        Route::prefix('curriculumn')->group(function () {
+
+                Route::get('/{curriculumn}', 'CurriculumnController@index')->name('admin.curriculumn.index');
+                Route::get('/{curriculumn}/create', 'CurriculumnController@create')->name('admin.curriculumn.create');
+                Route::post('/{curriculumn}/store', 'CurriculumnController@store')->name('admin.curriculumn.store');
+                Route::get('/{classes}/edit/{curriculumn}', 'CurriculumnController@edit')->name('admin.curriculumn.edit');
+                Route::put('/{classes}/update/{curriculumn}', 'CurriculumnController@update')->name('admin.curriculumn.update');
+                Route::get('/{classes}/destroy/{curriculumn}', 'CurriculumnController@destroy')->name('admin.curriculumn.destroy');
+
+        });
+
 
     });
 });
