@@ -55,6 +55,18 @@ Route::prefix('admin/management')->group(function () {
 
         });
 
+        Route::prefix('book')->group(function () {
+
+                Route::get('/{book}', 'BookController@index')->name('admin.book.index');
+                Route::get('/{book}/create', 'BookController@create')->name('admin.book.create');
+                Route::post('/{book}/store', 'BookController@store')->name('admin.book.store');
+                Route::get('/{classes}/edit/{book}', 'BookController@edit')->name('admin.book.edit');
+                Route::put('/{classes}/update/{book}', 'BookController@update')->name('admin.book.update');
+                Route::get('/{classes}/destroy/{book}', 'BookController@destroy')->name('admin.book.destroy');
+                Route::get('/pdf/{book}', 'BookController@show')->name('file.pdf');
+
+        });
+
 
     });
 });
