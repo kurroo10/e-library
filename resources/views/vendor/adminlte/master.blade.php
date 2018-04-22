@@ -79,6 +79,41 @@
      setTimeout(function(){ HoldOn.close(); }, 1000);
      $('#tables').DataTable();
      $('.select2').select2();
+
+     $(document).on('click','.btn-delete',function () {
+         var nama = $(this).data('name');
+         var url = $(this).data('url');
+         swal({
+           title: "Apakah Anda Yakin?",
+           text: "Anda akan menghapus data "+nama+"!",
+           icon: "error",
+           buttons: ["Batal", "Hapus!"],
+           dangerMode :true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             location.replace(url);
+           }
+         });
+       });
+
+       $(document).on('click','.btn-edit',function () {
+           var nama = $(this).data('name');
+           var url = $(this).data('url');
+           swal({
+             title: "Apakah Anda Yakin?",
+             text: "Anda akan merubah data "+nama+"!",
+             icon: "warning",
+             buttons: ["Batal", "Ubah!"],
+             dangerMode :true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               location.replace(url);
+             }
+           });
+         });
+
    } );
 </script>
 </body>

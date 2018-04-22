@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Classes;
+
+
 class ClassController extends Controller
 {
     /**
@@ -14,7 +17,10 @@ class ClassController extends Controller
      */
     public function index()
     {
-        return view('admin.class.index');
+        $class = Classes::all();
+        return view('admin.class.index',[
+          'class' => $class
+        ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+      return view('admin.class.create');
     }
 
     /**
@@ -35,7 +41,17 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $param = $request->all();
+
+        $save = Classes::saveClass($param);
+
+        if ($save) {
+          flash('Kelas Berhasil Ditambahkan')->success()->important();
+        }else{
+          flash('Kelas Gagal Ditambahkan')->error()->important();
+        }
+
+        return redirect(route('admin.classes.index'));
     }
 
     /**
@@ -55,9 +71,11 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Classes $classes)
     {
-        //
+        return view('admin.class.edit',[
+          'classes'  => $classes
+        ]);
     }
 
     /**
@@ -69,7 +87,17 @@ class ClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $param = $request->all();
+
+      $save = Classes::saveClass($param,$id);
+
+      if ($save) {
+        flash('Kelas Berhasil Diubah')->success()->important();
+      }else{
+        flash('Kelas Gagal Diubah')->error()->important();
+      }
+
+      return redirect(route('admin.classes.index'));
     }
 
     /**
@@ -78,8 +106,12 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Classes $classes)
     {
-        //
+      $classes->delete();
+
+      flash('Kelas Berhasil Dihapus')->success()->important();
+
+      return back();
     }
 }

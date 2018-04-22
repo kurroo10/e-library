@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'E-Library')
 
 @section('content_header')
     <h1>Halaman Kelola Petugas</h1>
@@ -56,39 +56,5 @@
 @stop
 
 @section('js')
-  <script type="text/javascript">
-    $(document).on('click','.btn-delete',function () {
-        var nama = $(this).data('name');
-        var url = $(this).data('url');
-        swal({
-          title: "Apakah Anda Yakin?",
-          text: "Anda akan menghapus data milik "+nama+"!",
-          icon: "error",
-          buttons: ["Batal", "Hapus!"],
-          dangerMode :true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            location.replace(url);
-          }
-        });
-      });
 
-      $(document).on('click','.btn-edit',function () {
-          var nama = $(this).data('name');
-          var url = $(this).data('url');
-          swal({
-            title: "Apakah Anda Yakin?",
-            text: "Anda akan merubah data milik "+nama+"!",
-            icon: "warning",
-            buttons: ["Batal", "Ubah!"],
-            dangerMode :true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              location.replace(url);
-            }
-          });
-        });
-  </script>
 @stop
