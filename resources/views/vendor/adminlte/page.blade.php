@@ -57,6 +57,28 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+                      <li class="dropdown user user-menu open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+              <img src="{{ asset('assets/logo.png') }}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ ucwords(Auth::user()->name) }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+                            <li class="user-header">
+                              <img src="{{ asset('assets/logo.png') }}" class="img-circle" alt="User Image">
+
+                              <p>
+                                {{ ucwords(Auth::user()->name) }}
+                              </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                              <div style="wo">
+                                <a href="#" class="btn btn-default btn-warning btn-flat" style="width:100%;"><span class="fa fa-key" style="color:white;"> Change Password</span></a>
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
