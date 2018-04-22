@@ -123,11 +123,11 @@ return [
             'icon' => 'user-circle-o',
         ],
 
-        [
-            'text' => 'Kelola Kelas',
-            'url'  => 'admin/management/classes',
-            'icon' => 'university',
-        ],
+        // [
+        //     'text' => 'Kelola Kelas',
+        //     'url'  => 'admin/management/classes',
+        //     'icon' => 'university',
+        // ],
 
         [
             'text' => 'Kelola Siswa',
@@ -136,15 +136,15 @@ return [
             'submenu' => [
                 [
                     'text' => 'Kelas 7',
-                    'url'  => '#',
+                    'url'  => 'admin/management/student/7',
                 ],
                 [
                     'text' => 'Kelas 8',
-                    'url'  => '#',
+                    'url'  => 'admin/management/student/8',
                 ],
                 [
                     'text' => 'Kelas 9',
-                    'url'  => '#',
+                    'url'  => 'admin/management/student/9',
                 ],
 
             ],

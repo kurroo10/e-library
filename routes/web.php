@@ -31,6 +31,19 @@ Route::prefix('admin/management')->group(function () {
 
         });
 
+        //Class Manageent
+
+        Route::prefix('student')->group(function () {
+
+                Route::get('/{student}', 'StudentController@index')->name('admin.student.index');
+                Route::get('/{student}/create', 'StudentController@create')->name('admin.student.create');
+                Route::post('/{student}/store', 'StudentController@store')->name('admin.student.store');
+                Route::get('/{classes}/edit/{student}', 'StudentController@edit')->name('admin.student.edit');
+                Route::put('/{classes}/update/{student}', 'StudentController@update')->name('admin.student.update');
+                Route::get('/{classes}/destroy/{student}', 'StudentController@destroy')->name('admin.student.destroy');
+
+        });
+
 
     });
 });
