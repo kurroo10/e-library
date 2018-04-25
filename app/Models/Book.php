@@ -31,12 +31,13 @@ class Book extends Model
       $book->author         = $param['author'];
       $book->publisher      = $param['publisher'];
       $book->year           = $param['year'];
-      $book->image          = $param['image'];
-      $book->file           = $param['pdf'];
+      $book->image          = isset($param['image']) ? $param['image'] : $book->image;
+      $book->file           = isset($param['pdf']) ? $param['pdf'] : $book->file;
       $book->description    = $param['description'];
       $book->class_id       = $param['class']->id;
       $book->curriculumn_id = $param['curriculumn'];
 
+      // dd($book);
       $book->save();
 
       DB::commit();

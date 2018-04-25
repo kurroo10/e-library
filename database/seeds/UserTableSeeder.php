@@ -13,7 +13,8 @@ class UserTableSeeder extends Seeder
     public function run()
     {
       $users = [
-          ['name' => 'admin', 'username' => 'admin' , 'email' => 'ikiw@mailinator.com' , 'password' => bcrypt('admin123')],
+          ['name' => 'admin', 'username' => 'admin' , 'email' => 'ikiw@mailinator.com' , 'password' => bcrypt('admin123'), 'is_admin' => true],
+          ['name' => 'user', 'username' => 'user' , 'email' => 'userlibrary@mailinator.com' , 'password' => bcrypt('user123'), 'is_admin' => false],
       ];
 
       foreach($users as $user){

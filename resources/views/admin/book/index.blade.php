@@ -52,8 +52,10 @@
                               <td>{{ $item->class->name }}</td>
                               <td>{{ $item->curriculumn->name }}</td>
                               <td>
+                                <a href="#" class="btn btn-warning btn-simple btn-xs btn-edit" title="Edit" data-name='{{$item->title}}' data-url='{{ route('admin.book.edit', ['classes' => $classes, 'book' => $item->id]) }}'> <span class="fa fa-edit"></span></a>
+                                <a href="#" class="btn btn-danger btn-simple btn-xs btn-delete" title="Delete" data-name='{{$item->title}}' data-url='{{ route('admin.book.destroy',['classes' => $classes, 'book' => $item->id]) }}'> <span class="fa fa-trash"></span></a>
                                 <a href="{{ route('file.pdf',$item->id) }}" target="_blank" class="btn btn-info btn-xs">
-                                  <span class="fa fa-file"> PDF</span>
+                                  <span class="fa fa-eye"> PDF</span>
                                 </a>
                               </td>
                             </tr>

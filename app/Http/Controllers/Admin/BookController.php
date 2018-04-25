@@ -134,9 +134,23 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($classes, Book $book)
     {
-        //
+      $start = Carbon::now()->subYear(10)->year;
+      $end = Carbon::now()->year;
+      for ($i=$end; $i >= $start; $i--) {
+        $year[$i]=$i;
+      }
+      $class    = Classes::where('name',$classes)->first();
+      $curriculumn = Curriculumn::where('class_id',$class->id)->get()->pluck('name','id');
+
+
+      return view('admin.book.edit',[
+        'classes'     => $classes,
+        'book'        => $book,
+        'year'        => $year,
+        'curriculumn' => $curriculumn,
+      ]);
     }
 
     /**
@@ -146,9 +160,39 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,$book)
     {
-        //
+      $param          = $request->all();
+      $param['class'] = Classes::where('name',$id)->first();
+
+      $check = Book::where('isbn',$param['isbn'])->get();
+      if (count($check) > 1) {
+        flash('ISBN Buku Tersebut Sudah Terdaftar')->warning()->important();
+
+        return back()->withInput($request->input());
+      }else {
+        if ($request->file('cover')) {
+          $cover = $request->file('cover');
+          $param['image'] = uniqid().'.'.$cover->getClientOriginalExtension();
+          Storage::disk('cover')->put($param['image'], file_get_contents($cover->getRealPath()));
+        }
+
+        if ($request->file('file')) {
+          $file = $request->file('file');
+          $param['pdf'] = uniqid().'.'.$file->getClientOriginalExtension();
+          Storage::disk('file')->put($param['pdf'], file_get_contents($file->getRealPath()));
+        }
+
+        $save = Book::saveBook($param,$book);
+
+        if ($save) {
+          flash('Data Buku Berhasil Diubah')->success()->important();
+        }else{
+          flash('Data Buku Gagal Diubah')->error()->important();
+        }
+
+        return redirect(route('admin.book.index',$id));
+      }
     }
 
     /**
@@ -157,8 +201,12 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Book $book)
     {
-        //
+      $book->delete();
+
+      flash('Data Buku Berhasil Dihapus')->success()->important();
+
+      return back();
     }
 }

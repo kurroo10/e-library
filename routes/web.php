@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/home', 'HomeController@index')->name('admin.index');
+Route::get('/user/home', 'User\UserController@index')->name('user.index');
+Route::get('/user/book/{id}', 'User\UserController@show')->name('user.show');
+Route::get('/user/book/pdf/{id}', 'User\UserController@pdf')->name('user.pdf');
+Route::post('/user/book/find', 'User\UserController@find')->name('user.book.find');
 
 Route::prefix('admin/management')->group(function () {
     Route::namespace('Admin')->group(function () {
