@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Classes;
 use App\Models\Book;
+use App\Models\Classes;
 use App\Models\Curriculumn;
+use App\Models\Student;
 use File;
+use Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -18,10 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
-      $book = Book::all();
+      $book = Book::paginate(9);
 
       return view('user.index',[
-        'book' => $book
+        'book' => $book,
       ]);
     }
 
@@ -55,11 +57,14 @@ class UserController extends Controller
     public function show($id)
     {
         $param = decrypt($id);
-
         $book = Book::find($param);
+        $user = Student::with('class')
+                        ->where('user_id',Auth::user()->id)
+                        ->first();
 
         return view('user.show',[
-          'book' => $book
+          'book' => $book,
+          'user' => $user,
         ]);
     }
 

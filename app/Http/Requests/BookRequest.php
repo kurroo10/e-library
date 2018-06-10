@@ -23,8 +23,11 @@ class BookRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+      return [
+        'isbn'        => 'required|numeric',
+        'title'       => 'required',
+        'curriculumn' => 'required|max:255',
+        'description' => 'max:255',
+      ];
     }
 }

@@ -112,6 +112,11 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
+              <div class="user-panel">
+                <center>
+                  <img src="{{asset('assets/logo-sekolah-2.png')}}" alt="" width="70%">
+                </center>
+              </div>
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">

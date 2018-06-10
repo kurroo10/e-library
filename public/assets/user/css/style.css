@@ -19,6 +19,10 @@ body {
   background: #fff;
 }
 
+.center{
+  align-content: center;
+}
+
 #page {
   position: relative;
   overflow-x: hidden;
@@ -92,7 +96,7 @@ h1, h2, h3, h4, h5, h6, figure {
   right: 0;
   padding: 25px 0;
   z-index: 1;
-  background: #edebe8;
+  background: #3c8dbc;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
@@ -135,7 +139,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-nav a {
   padding: 5px 0;
-  color: #000;
+  color: #FFF;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav .menu-1, .fh5co-nav .menu-2 {
@@ -199,7 +203,7 @@ h1, h2, h3, h4, h5, h6, figure {
   letter-spacing: 2px;
   font-size: 12px;
   padding: 30px 10px;
-  color: rgba(0, 0, 0, 0.9);
+  color: #FFF;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -1069,6 +1073,13 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
   border: 2px solid #cabcab;
 }
+
+.btn-blue {
+  background: #3c8dbc;
+  color: #fff;
+  border: 2px solid #e5e5e5;
+}
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background: #d4c8bb !important;
   border-color: #d4c8bb !important;

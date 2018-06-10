@@ -61,7 +61,9 @@
 		<div class="container">
 			<div class="fh5co-top-logo">
 				<div id="fh5co-logo">
-          <a href="{!! route('user.index') !!}">E-Library</a>
+          <a href="{!! route('user.index') !!}">
+          	<img src="{!! asset('assets/logo-sekolah.png') !!}" alt="" width="30%"> E-LIBRARY
+          </a>
         </div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center pull-right ">
@@ -71,7 +73,7 @@
 						@guest
 							<a href="{!! route('login') !!}">Login</a>
 						@else
-							<a href="#">Setting</a>
+							<a href="#">Selamat Datang, {{ Auth::user()->name}}</a>
 							<ul class="dropdown">
 								<li><a href="#">Change Password</a></li>
 								<li>
@@ -101,28 +103,19 @@
 		</div>
 	</nav>
 
-	<div id="fh5co-work">
-		<div class="container">
-        @yield('content')
-		</div>
-	</div>
+
+    @yield('content')
+
+
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> &amp; <a href="http://blog.gessato.com/" target="_blank">Gessato</a></small>
+						<small class="block">&copy; 2018. All Rights Reserved.</small>
+						<small class="block">Designed by <a href="#" target="_blank">Dicky Maulana</a></small>
 					</p>
-
-					<ul class="fh5co-social-icons">
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-linkedin"></i></a></li>
-						<li><a href="#"><i class="icon-dribbble"></i></a></li>
-					</ul>
-
 				</div>
 			</div>
 
