@@ -3,6 +3,9 @@
 @section('content')
   
   <div id="fh5co-work">
+    <center>
+      @include('flash::message')
+    </center>
     <div class="container">
         <div class="col-md-2">
     <img src="{{ asset('storage/cover/'.$book->image)}}" alt="" width="500px" height="400px">
@@ -76,10 +79,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Laporkan Buku {{$book->title}}</h4>
+        <h4 class="modal-title">Laporkan Buku ({{$book->title}}) </h4>
       </div>
       <div class="modal-body">
-        <form action="show_submit" method="get" accept-charset="utf-8">
+        <form action="{{ route('content.report') }}" method="post">
+          {{csrf_field()}}
+          <input type="hidden" name="book_id" value="{{$book->id}}">
+          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <div class="form-group">
                 <label for="">Nama</label>
                 <input type="text" name="name" value="{{ $user->name }}" placeholder="" class="form-control" readonly="yes">
@@ -92,19 +98,20 @@
 
             <div class="form-group">
                 <label for="">Tanggal Lapor</label>
-                <input type="text" name="date" value="{{ date('d-m-Y H:i:s') }}" placeholder="" class="form-control" readonly="yes">
+                <input type="text" value="{{ date('d-m-Y H:i:s') }}" placeholder="" class="form-control" readonly="yes">
             </div>
             
             <div class="form-group">
                 <label for="">Isi Laporan</label>
-                <textarea name="report" class="form-control" style="resize: none;"></textarea>
+                <textarea name="description" class="form-control" style="resize: none;" required></textarea>
             </div>
 
-        </form>
       </div>
       <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Laporkan</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
+    </form>
     </div>
 
   </div>

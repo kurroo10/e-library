@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Hash;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +27,29 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $param = $request->all();
+        $user = User::find(auth()->user()->id);
+
+        if (Hash::check($param['old_password'], $user->password)) {
+            $user->update([
+                'password' => bcrypt($param['password'])
+            ]);
+
+            flash('Password berhasil diubah !')->success()->important();
+            Auth::logout();
+
+            return redirect('login');
+
+        } else {
+            flash('Password Lama anda salah ! Silahkan Coba lagi')->error()->important();
+
+            return back();
+        }
+        
+
     }
 }

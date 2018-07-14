@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/user/css/custom.css') }}">
 
 
     @if(config('adminlte.plugins.select2'))
@@ -43,7 +44,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition @yield('body_class')">
-
+<div class="loader"></div>
 @yield('body')
 
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
@@ -74,9 +75,12 @@
 @yield('adminlte_js')
 
 <script type="text/javascript">
+   $(window).on('load', function(){
+        $('.loader').fadeOut();
+   });
+
+
    $(document).ready( function () {
-     HoldOn.open();
-     setTimeout(function(){ HoldOn.close(); }, 1000);
      $('#tables').DataTable();
      $('.select2').select2();
 

@@ -9,6 +9,10 @@
 @section('body_class', 'login-page')
 
 @section('body')
+<center>
+    @include('flash::message')
+</center>
+
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>

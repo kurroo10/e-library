@@ -75,7 +75,7 @@
 						@else
 							<a href="#">Selamat Datang, {{ Auth::user()->name}}</a>
 							<ul class="dropdown">
-								<li><a href="#">Change Password</a></li>
+								<li><a href="#" id="btn-setting">Change Password</a></li>
 								<li>
 									@if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
 										<a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
@@ -104,7 +104,9 @@
 	</nav>
 
 
-    @yield('content')
+	@yield('content')
+	
+	
 
 
 
@@ -127,6 +129,47 @@
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 
+	<div id="changePassword" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Setting</h4>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('user.changePassword') }}" method="post">
+				@include('flash::message')
+
+				{{csrf_field()}}
+				<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					<div class="form-group">
+						<label for="">Nama</label>
+						<input type="text" name="name" value="{{ Auth::user()->name }}" placeholder="" class="form-control" readonly="yes">
+					</div>
+
+					<div class="form-group">
+						<label for="">Password Lama</label>
+						<input type="password" name="old_password" placeholder="**************" class="form-control" required>
+					</div>
+		
+					<div class="form-group">
+						<label for="">Password Baru</label>
+						<input type="password" name="password" placeholder="**************" class="form-control" required>
+					</div>
+		
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-warning">Ubah Password</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			</form>
+			</div>
+		
+		</div>
+	</div>
+
 	<!-- jQuery -->
 	<script src="{{asset('assets/user/js/jquery.min.js')}}"></script>
 	<!-- jQuery Easing -->
@@ -140,5 +183,16 @@
 
 	@yield('js')
 
+	<script>
+		$(document).ready(function(){
+          $('.alert').fadeOut(10000);
+        });
+
+		$('#btn-setting').click(function(event) {
+			$('#changePassword').modal('show');
+		});
+	</script>
+	
+	
 	</body>
 </html>
