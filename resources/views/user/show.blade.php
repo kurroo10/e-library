@@ -13,6 +13,10 @@
   <div class="col-md-10">
     <div class="col-md-8 col-md-offset-3 col-md-push-2 text-left fh5co-heading">
         <h2>{{ $book->title }}</h2>
+        <small>
+          <b style="color:red">({{ ($book->is_active == false) ? 'Buku Sedang Di Non-Aktifkan': 'Buku Sedang Aktif' }})</b>
+        </small>
+        <br>
         <p>
           @if ($book->description)
             {{ $book->description }}
