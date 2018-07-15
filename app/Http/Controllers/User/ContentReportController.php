@@ -8,6 +8,7 @@ use App\Models\ContentReport;
 
 class ContentReportController extends Controller
 {
+
     public function submit(Request $request)
     {
         $param = $request->all();

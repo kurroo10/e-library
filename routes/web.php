@@ -80,6 +80,18 @@ Route::middleware(['auth','web'])->group(function () {
                             Route::get('/pdf/{book}', 'BookController@show')->name('file.pdf');
             
                     });
+
+                    Route::prefix('report')->group(function () {
+            
+                        Route::get('/content_report', 'ContentReportController@index')->name('admin.content_report.index');
+                        Route::get('/content_report/{id}/non_active', 'ContentReportController@nonactive')->name('admin.content_report.nonactive');
+                        Route::get('/content_report/{id}/active', 'ContentReportController@active')->name('admin.content_report.active');
+                        Route::get('/content_report/{id}/delete', 'ContentReportController@destroy')->name('admin.content_report.destroy');
+                        
+
+                        Route::get('/book_analyst', 'ReportController@index')->name('admin.report.index');
+
+                });
             
             
                 });

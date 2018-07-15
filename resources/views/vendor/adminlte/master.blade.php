@@ -47,6 +47,8 @@
 <div class="loader"></div>
 @yield('body')
 
+
+
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -117,6 +119,44 @@
              }
            });
          });
+
+         $(document).on('click','.btn-nonactive',function () {
+            var nama = $(this).data('name');
+            var url = $(this).data('url');
+            swal({
+              title: "Apakah Anda Yakin?",
+              text: "Anda akan menonaktifkan buku "+nama+"!",
+              icon: "warning",
+              buttons: ["Batal", "Non Aktifkan!"],
+              dangerMode :true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                location.replace(url);
+              }
+            });
+          });
+
+          $(document).on('click','.btn-active',function () {
+            var nama = $(this).data('name');
+            var url = $(this).data('url');
+            swal({
+              title: "Apakah Anda Yakin?",
+              text: "Anda akan mengaktifkan buku "+nama+"!",
+              icon: "warning",
+              buttons: ["Batal", "Aktifkan!"],
+              dangerMode :true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                location.replace(url);
+              }
+            });
+          });
+
+          $('#btn-setting').click(function(event) {
+            $('#changePassword').modal('show');
+          });
 
    } );
 </script>

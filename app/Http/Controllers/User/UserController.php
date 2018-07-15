@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      $book = Book::paginate(9);
+      $book = Book::where('is_active',true)->paginate(9);
 
       return view('user.index',[
         'book' => $book,
@@ -58,6 +58,10 @@ class UserController extends Controller
     {
         $param = decrypt($id);
         $book = Book::find($param);
+
+        $book->is_visited = ($book->is_visited) +1;
+        $book->save(); 
+
         $user = Student::with('class')
                         ->where('user_id',Auth::user()->id)
                         ->first();
@@ -131,8 +135,9 @@ class UserController extends Controller
     {
       $param  = $req->all();
       $book   = Book::where('title','like','%'.$param['val'].'%')
-                      ->orWhere('author','like','%'.$param['val'].'%')
-                      ->get();
+                    ->where('is_active',true)
+                    ->orWhere('author','like','%'.$param['val'].'%')
+                    ->get();
 
       return view('user.data',[
         'book' => $book

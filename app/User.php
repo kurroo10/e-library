@@ -38,6 +38,7 @@ class User extends Authenticatable
         $user->name     = $param['name'];
         $user->username = $param['username'];
         $user->email    = $param['email'];
+        $user->is_admin = true;
         $user->password = bcrypt($param['password']);
 
         $user->save();

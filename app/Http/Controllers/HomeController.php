@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Hash;
 use Auth;
+use App\Models\ContentReport;
+use App\Models\Book;
+use App\Models\Student;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $content_report = ContentReport::count();
+        $last_book = Book::orderBy('created_at','desc')->get()->take(5);
+        $book = Book::count();
+        $admin = User::where('is_admin',true)->where('username','!=','admin')->count();
+        $last_admin = User::where('is_admin',true)->where('username','!=','admin')->get()->take(5);
+        $student = Student::count();
+
+        return view('home',compact('content_report','book','admin','student','last_book','last_admin'));
     }
 
     public function changePassword(Request $request)

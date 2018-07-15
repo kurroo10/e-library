@@ -111,7 +111,7 @@ return [
         'Dashboard',
         [
             'text'        => 'Dashboard',
-            'url'         => 'admin/management/dashboard',
+            'url'         => 'admin/home',
             'icon'        => 'dashboard',
             'label'       => 'Info',
             'label_color' => 'success',
@@ -199,11 +199,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Laporan Buku',
-                    'url'  => '#',
+                    'url'  => 'admin/management/report/book_analyst',
                 ],
                 [
                     'text' => 'Laporan Buku Bermasalah',
-                    'url'  => '#',
+                    'url'  => 'admin/management/report/content_report',
                 ],
 
             ],

@@ -37,7 +37,6 @@ class Book extends Model
       $book->class_id       = $param['class']->id;
       $book->curriculumn_id = $param['curriculumn'];
 
-      // dd($book);
       $book->save();
 
       DB::commit();
@@ -45,7 +44,6 @@ class Book extends Model
       $response = true;
 
     } catch (\Exception $e) {
-      dd($e);
       DB::rollback();
       $response = false;
     }
